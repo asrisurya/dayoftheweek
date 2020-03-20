@@ -1,39 +1,23 @@
+*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *   Version_2: Output
 *	edit	: 18 19 2019
 *	 author	: Asri Surya
 *	 email	: asri.surya@mail.ugm.ac.id
-/*
-NOTES: 
-1.(20190928) edited estimation period
-2.(20191001) change to raw return,w/ 1st and 99th
-3.(20191004)return not multiple by 100-canceled
-
-4. back to datav02, without outliers and (*return1*100)
-5. fixed estimation time
-6. (20191118) include wed and revisit equation
-*/
+*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 quietly {
 cls
 capture log close
 clear
 set more off
 
-global path "C:\Users\k3162\Dropbox\Publication\stata"
-
-*Define sub directories
-global logfiles "$path\logfiles"
-global dofiles "$path\do"
-global datafiles "$path\datafiles"
+// ++ Change this direcory before start the dofile +++ //
+global path "C:\Users\k3162\OneDrive\Documents\GitHub\dayoftheweek\stata"
 
 * Go to the main directory 
 cd $path
 
-*Setup up logfile
-capture log close
-log using "$logfiles/dotw_v06", text replace
-
 *Import datafiles
-use "$datafiles/datasetv08-20200129", clear
+use "datasetv08-20200129", clear
 }
 gen L1=return1[_n-1] //generate (1)lag value of return	
 gen yr=year(date)
